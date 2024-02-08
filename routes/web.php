@@ -16,6 +16,7 @@ use App\Http\Controllers\loginController;
 
 Route::get('/', function () {
     return view('home');
+//    return "gjh";
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
