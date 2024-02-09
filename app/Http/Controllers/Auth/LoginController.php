@@ -43,7 +43,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return to_route('home')->with('success', 'Vous êtes bien connecté ' . $email . " .");
+            return to_route('home')->with('success', 'Vous êtes bien connecté ' . $email . ".");
 
         } elseif (Auth::attempt($credentials)) {
             $request->session()->regenerate(true);

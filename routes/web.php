@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
+Route::get('/', function () {return view('home');});
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
