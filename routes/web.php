@@ -29,6 +29,6 @@ Route::post('/login', [LoginController::class, 'store'])->name('login');
 
 Route::post('/logout', [LogoutController::class, 'destroy'])->name('logout');
 
-Route::get('/forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('password.email');
-Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store'])->name('password.request');
+Route::get('/forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store'])->name('password');
 Route::post('/forgot-password/{token}', [ForgotPasswordLinkController::class, 'reset'])->name('password.reset');
