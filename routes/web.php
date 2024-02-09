@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordLinkController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\loginController;
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
@@ -15,20 +18,17 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', function () {return view('home');});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/login', [loginController::class, 'showLogin'])->name('login.show');
-Route::post('/login', [loginController::class, 'login'])->name('login');
-
-//Route::get('/register', [loginController::class, 'showRegister'])->name('register.show');
-//Route::post('/register', [loginController::class, 'register'])->name('register');
-
-Route::post('/logout', [LoginController::class, 'logout'])->name("logout");
-
-Route::get('/register', [RegisterController::class, 'create'])->name('register.show');
+Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
+Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+Route::post('/login', [LoginController::class, 'store'])->name('login');
+
+Route::post('/logout', [LogoutController::class, 'destroy'])->name('logout');
+
+Route::get('/forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store'])->name('password');
+Route::post('/forgot-password/{token}', [ForgotPasswordLinkController::class, 'reset'])->name('password.reset');

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('auth.login');
     }
 
     /**
@@ -33,19 +33,27 @@ class RegisterController extends Controller
     {
         //Validation
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:8'
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
-        //Database Insert
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        Auth::login($user);
-        return redirect('home');
+        $email = $request->email;
+        $password = $request->password;
+        $credentials = ['email' => $email, 'password' => $password];
+
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $request->session()->regenerate();
+            return to_route('home')->with('success', 'Vous êtes bien connecté ' . $email . ".");
+
+        } elseif (Auth::attempt($credentials)) {
+            $request->session()->regenerate(true);
+            return to_route('home')->with('success', 'Vous êtes bien connecté ' . $email . " .");
+
+        } else {
+            return back()->withErrors([
+                'email' => 'Email ou mot de passe incorrect.'
+            ])->onlyInput('email');
+        }
     }
 
     /**
