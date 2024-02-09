@@ -3,13 +3,19 @@
 @section('content')
 
     <div class="container">
-        @if (session('success'))
+        @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
 
-        <p>Hello {{ Auth::user()->email }}</p>
+        @if(session('error'))
+            <div class="alert alert-danger">
+                <strong>{{ session('error') }}</strong>
+            </span>
+        @endif
+
+        <h1>Hello {{ Auth::user()->email }}!</h1>
     </div>
 
 @endsection
