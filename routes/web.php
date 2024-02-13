@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -32,3 +33,12 @@ Route::post('/logout', [LogoutController::class, 'destroy'])->name('logout');
 Route::get('/forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store'])->name('password');
 Route::post('/forgot-password/{token}', [ForgotPasswordLinkController::class, 'reset'])->name('password.reset');
+
+Route::get('/mediaForm', [MediaController::class, 'index'])->name('show.form.media');
+Route::post('/media' ,[MediaController::class, 'store'])->name('create.media');
+
+Route::get('/table' ,[MediaController::class, 'show'])->name('show.table.media');
+
+Route::delete('/delete/{id}' , [MediaController::class, 'destroy'])->name('delete.media');
+
+
