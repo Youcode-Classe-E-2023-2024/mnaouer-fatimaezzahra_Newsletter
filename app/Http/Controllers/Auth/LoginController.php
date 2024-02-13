@@ -41,14 +41,18 @@ class LoginController extends Controller
         $password = $request->password;
         $credentials = ['email' => $email, 'password' => $password];
 
+        //si on a cocher remember me
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
             return to_route('home')->with('success', 'Vous êtes bien connecté ' . $email . ".");
 
+            //si on n'a pas cocher remember me. le point c'est le termine du phrase
+
         } elseif (Auth::attempt($credentials)) {
             $request->session()->regenerate(true);
-            return to_route('home')->with('success', 'Vous êtes bien connecté ' . $email . " .");
+            return to_route('home')->with('success', 'Vous êtes bien connecté ' . $email . ".");
 
+            //si email ou pass incorrect
         } else {
             return back()->withErrors([
                 'email' => 'Email ou mot de passe incorrect.'

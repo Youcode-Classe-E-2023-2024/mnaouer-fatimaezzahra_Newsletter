@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+{{--                title--}}
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -62,6 +63,11 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="row mb-0 mt-3">
+                            <div class="col-md-8 offset-md-4">
+                                <a href="{{ __('register') }}" class="btn btn-primary" type="button">Sign up</a>
                             </div>
                         </div>
                     </form>
