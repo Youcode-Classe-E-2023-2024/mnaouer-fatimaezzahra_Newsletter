@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\subscriberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -40,5 +41,11 @@ Route::post('/media' ,[MediaController::class, 'store'])->name('create.media');
 Route::get('/table' ,[MediaController::class, 'show'])->name('show.table.media');
 
 Route::delete('/delete/{id}' , [MediaController::class, 'destroy'])->name('delete.media');
+
+Route::post('/home' ,[subscriberController::class, 'addSubscriber'])->name('add_subscriber');
+
+Route::post('/unsubscribe' ,[subscriberController::class, 'unsubscribe'])->name('unsubscribe');
+
+    Route::get('/dashboard' ,[subscriberController::class, 'showDashboard'])->name('show.dashboard');
 
 
