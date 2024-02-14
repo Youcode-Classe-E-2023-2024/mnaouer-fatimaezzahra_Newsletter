@@ -29,16 +29,17 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register')
 Route::get('/login', [LoginController::class, 'create'])->name('login.create');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 
-Route::post('/logout', [LogoutController::class, 'destroy'])->name('logout');
+Route::get('/logout', [LogoutController::class, 'destroy'])->name('logout');
 
 Route::get('/forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store'])->name('password');
-Route::post('/forgot-password/{token}', [ForgotPasswordLinkController::class, 'reset'])->name('password.reset');
+Route::get('/forgot-password/{token}', [ForgotPasswordLinkController::class, 'resetform'])->name('password.reset');
+Route::post('/forgot-password/', [ForgotPasswordLinkController::class, 'reset'])->name('password.update');
 
 Route::get('/mediaForm', [MediaController::class, 'index'])->name('show.form.media');
 Route::post('/media' ,[MediaController::class, 'store'])->name('create.media');
 
-Route::get('/table' ,[MediaController::class, 'show'])->name('show.table.media');
+Route::get('/table' ,[MediaController::class, 'show'])->name('show.table.media')->middleware('auth');
 
 Route::delete('/delete/{id}' , [MediaController::class, 'destroy'])->name('delete.media');
 
