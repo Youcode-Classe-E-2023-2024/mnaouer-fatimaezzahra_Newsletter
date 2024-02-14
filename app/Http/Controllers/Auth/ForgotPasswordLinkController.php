@@ -43,6 +43,10 @@ class ForgotPasswordLinkController extends Controller
             ? back()->with('status', __($status))
             : back()->withInput($request->only('email'))->withErrors(['email' => __($status)]);
     }
+    public function resetform($token){
+        return view('auth.passwords.reset',compact('token'));
+
+    }
 
     public function reset(Request $request){
         $request->validate([
