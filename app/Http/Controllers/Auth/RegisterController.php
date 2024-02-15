@@ -45,7 +45,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
         Auth::login($user);
-        return redirect('home');
+        return redirect('login.create');
     }
 
     /**

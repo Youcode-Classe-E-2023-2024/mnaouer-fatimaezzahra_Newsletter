@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\subscriberController;
@@ -47,6 +48,10 @@ Route::post('/home' ,[subscriberController::class, 'addSubscriber'])->name('add_
 
 Route::post('/unsubscribe' ,[subscriberController::class, 'unsubscribe'])->name('unsubscribe');
 
-    Route::get('/dashboard' ,[subscriberController::class, 'showDashboard'])->name('show.dashboard');
+Route::get('/dashboard' ,[DashboardController::class, 'showDashboard'])->name('show.dashboard');
+
+Route::get('/listeUser' ,[DashboardController::class, 'ListeUser'])->name('show.users');
+
+
 
 

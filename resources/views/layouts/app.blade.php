@@ -38,25 +38,36 @@
         <form class="">
             <ul class="navbar-nav ml-auto">
                 <div class="row">
-                    <li class="col-md-3 nav-item active">
+                    <li class="col-md-4 nav-item active">
                         <a class="nav-link" href="{{ __('home') }}">Home</a>
                     </li>
-                    <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="{{ __('mediaForm') }}">Media</a>
-                    </li>
-
-                    <li class="col-md-3 nav-item">
+{{--                    <li class="col-md-3 nav-item">--}}
+{{--                        <a class="nav-link" href="{{ __('mediaForm') }}">Media</a>--}}
+{{--                    </li>--}}
+@auth
+                    <li class="col-md-3 nav-item ">
                     <a class="nav-link" href="{{ __('table') }}">Liste Media</a>
 
                     </li>
-                    <li class="col-md-3 nav-item dropdown">
+                    @endauth
+                    <li class=" col-md-3 nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ __('logout') }}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Menu
                         </a>
 
+
+                        @guest
+                            @if (Route::has('login'))
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </div>
+                            @endif
+
+                            @else
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                                </div>
+                        @endguest
                     </li>
                 </div>
             </ul>
@@ -65,21 +76,21 @@
     </div>
 </nav>
 
-@guest
-    @if (Route::has('login'))
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-        </li>
-    @endif
+{{--@guest--}}
+{{--    @if (Route::has('login'))--}}
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
+{{--        </li>--}}
+{{--    @endif--}}
 
-    @if (Route::has('register'))
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-        </li>
-        @endif
-        @else
+{{--    @if (Route::has('register'))--}}
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
+{{--        </li>--}}
+{{--        @endif--}}
+{{--        @else--}}
 
-        @endguest
+{{--        @endguest--}}
 
         <main class="py-4">
             @yield('content')

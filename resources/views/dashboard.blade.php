@@ -379,11 +379,11 @@
             </div>
 
             <div class="navbar-nav w-100">
-                <a href="" class="nav-item nav-link"><i class="fa-solid fa-newspaper"></i>Moderation</a>
+                <a href="{{route('show.users')}}" class="nav-item nav-link"><i class="fa-solid fa-newspaper"></i>Liste User</a>
             </div>
 
             <div class="navbar-nav w-100">
-                <a href="" class="nav-item nav-link"><i class="fa-solid fa-list"></i>Category</a>
+                <a href="" class="nav-item nav-link"><i class="fa-solid fa-list"></i>Liste Suscriber</a>
             </div>
 
             <div class="navbar-nav w-100">
