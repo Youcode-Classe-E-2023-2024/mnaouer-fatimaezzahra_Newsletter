@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use App\Models\Subscriber;
 
@@ -48,6 +49,24 @@ class subscriberController extends Controller
     public function showDashboard()
     {
         return view('dashboard');
+    }
+
+    public function showSubscriberStatistics()
+    {
+        $subscriberStatistics = Subscriber::select(
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('COUNT(*) as subscriber_count')
+        )
+            ->groupBy('date')
+            ->get();
+
+        // Nombre total d'abonnés
+//        $totalSubscribers = Subscriber::count();
+
+        return view('dashboard', [
+            'subscriberStatistics' => $subscriberStatistics,
+//            'totalSubscribers' => $totalSubscribers
+        ]);
     }
 }
 

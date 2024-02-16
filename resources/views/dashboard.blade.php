@@ -1,49 +1,4 @@
 
-
-
-
-{{--<div>--}}
-{{--    <div id="statistique">--}}
-{{--        <!-- graphe -->--}}
-{{--        <div class="pt-20 flex justify-center">--}}
-{{--            <div class=" gap-10 flex flex-wrap w-full justify-center">--}}
-{{--                <div class="w-1/2 py-6 px-6 1/3 rounded-xl border border-gray-800 bg-white">--}}
-{{--                    <h5 class="text-xl text-gray-700">Abonnement</h5>--}}
-{{--                    <canvas id="subscriberChart" class="w-full" height="150"></canvas>--}}
-{{--                </div>--}}
-
-{{--                <!-- end graphe -->--}}
-
-
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <!-- Ajoutdu bouton d'exportation PDF -->--}}
-{{--        <div class="flex justify-center pt-10 mt-6">--}}
-{{--            <button class="bg-purple-300 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onclick="pdf()">Exporter en PDF</button>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,6 +25,13 @@
     <!-- Libraries Stylesheet -->
     <link href="./assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="./assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
+
+{{--    chart js--}}
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{{--    html 2pdf --}}
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -422,7 +384,7 @@
                     <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                         <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#007bff" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
                         <div class="ms-3">
-                            <p class="mb-2">User</p>
+                            <p class="mb-2">ListUser</p>
                             <!--       //pour afficher le nombre des users dans ce projet-->
                             <h6 class="mb-0"></h6>
                         </div>
@@ -431,7 +393,7 @@
                 <div class="col-sm-6 col-xl-3">
                     <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                         <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#007bff" d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>                        <div class="ms-3">
-                            <p class="mb-2">Category</p>
+                            <p class="mb-2">ListSubscriber</p>
                             <!--             //pour afficher le nombre des categories dans ce projet-->
                             <h6 class="mb-0"></h6>
                         </div>
@@ -440,7 +402,7 @@
                 <div class="col-sm-6 col-xl-3">
                     <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                         <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#007bff" d="M96 96c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128c0-17.7 14.3-32 32-32s32 14.3 32 32V400c0 8.8 7.2 16 16 16s16-7.2 16-16V96zm64 24v80c0 13.3 10.7 24 24 24H296c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z"/></svg>                        <div class="ms-3">
-                            <p class="mb-2">Article</p>
+                            <p class="mb-2">Template</p>
                             <!--                  //pour afficher le nombre des articles dans ce projet-->
                             <h6 class="mb-0"></h6>
                         </div>
@@ -449,7 +411,7 @@
                 <div class="col-sm-6 col-xl-3">
                     <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                         <svg xmlns="http://www.w3.org/2000/svg" height="50" width="50" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#007bff" d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>                        <div class="ms-3">
-                            <p class="mb-2">Tag</p>
+                            <p class="mb-2">XX</p>
                             <!--             //pour afficher le nombre des tags dans ce projet-->
                             <h6 class="mb-0"></h6>
                         </div>
@@ -457,55 +419,75 @@
                 </div>
             </div>
         </div>
-        <!-- Sale & Revenue End -->
+        <!-- Chart Start -->
+        <div>
+                <div id="statistique">
+                    <!-- graphe -->
+                    <div class="pt-20 flex justify-center">
+                        <div class=" gap-10 flex flex-wrap w-full justify-center">
+                            <div class="w-1/2 py-6 px-6 1/3 rounded-xl border border-gray-800 bg-white">
+                                <h5 class="text-xl text-gray-700">Abonnement</h5>
+                                <canvas id="subscriberChart" class="w-full" height="150"></canvas>
+                            </div>
 
+                            <!-- end graphe -->
+
+
+                        </div>
+                    </div>
+                </div>
+                    <!-- Ajoutdu bouton d'exportation PDF -->
+                    <div class="flex justify-center pt-10 mt-6">
+                        <button class="bg-purple-300 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onclick="pdf()">Exporter en PDF</button>
+                    </div>
+
+            </div>
+        <!-- Chart End -->
         <!-- Chart Start  partie de statique-->
-{{--        <script>--}}
+        <script>
+      // cette partie est pour statistique les charts sur dashboard
 
+            const dates = @json($subscriberStatistics->pluck('date'));
+            const counts = @json($subscriberStatistics->pluck('subscriber_count'));
 
-{{--            // cette partie est pour statistique les charts sur dashboard--}}
+            const ctx = document.getElementById('subscriberChart').getContext('2d');
+            const subscriberChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Nombre d\'abonnements ajoutés',
+                        data: counts,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nombre d\'abonnements'
+                            }
+                        }
+                    }
+                }
+            });
 
-{{--            const dates = @json($subscriberStatistics->pluck('date'));--}}
-{{--            const counts = @json($subscriberStatistics->pluck('subscriber_count'));--}}
-
-{{--            const ctx = document.getElementById('subscriberChart').getContext('2d');--}}
-{{--            const subscriberChart = new Chart(ctx, {--}}
-{{--                type: 'bar',--}}
-{{--                data: {--}}
-{{--                    labels: dates,--}}
-{{--                    datasets: [{--}}
-{{--                        label: 'Nombre d\'abonnements ajoutés',--}}
-{{--                        data: counts,--}}
-{{--                        backgroundColor: 'rgba(75, 192, 192, 0.2)',--}}
-{{--                        borderColor: 'rgba(75, 192, 192, 1)',--}}
-{{--                        borderWidth: 1--}}
-{{--                    }]--}}
-{{--                },--}}
-{{--                options: {--}}
-{{--                    scales: {--}}
-{{--                        x: {--}}
-{{--                            title: {--}}
-{{--                                display: true,--}}
-{{--                                text: 'Date'--}}
-{{--                            }--}}
-{{--                        },--}}
-{{--                        y: {--}}
-{{--                            beginAtZero: true,--}}
-{{--                            title: {--}}
-{{--                                display: true,--}}
-{{--                                text: 'Nombre d\'abonnements'--}}
-{{--                            }--}}
-{{--                        }--}}
-{{--                    }--}}
-{{--                }--}}
-{{--            });--}}
-
-{{--            function pdf()--}}
-{{--            {--}}
-{{--                const element = document.getElementById('statistique');--}}
-{{--                html2pdf(element);--}}
-{{--            }--}}
-{{--        </script>--}}
+      function pdf()
+      {
+          const element = document.getElementById('statistique');
+          html2pdf(element);
+      }
+        </script>
         <!-- Chart End -->
 
 
@@ -529,126 +511,8 @@
 <script src="assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 <!-- Template Javascript -->
-<script src="assets/js/main.js"></script>
-<script>
-    (function ($) {
-        "use strict";
+<script src="js/main.js"></script>
 
-        // Spinner
-        var spinner = function () {
-            setTimeout(function () {
-                if ($('#spinner').length > 0) {
-                    $('#spinner').removeClass('show');
-                }
-            }, 1);
-        };
-        spinner();
-
-
-        // Back to top button
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 300) {
-                $('.back-to-top').fadeIn('slow');
-            } else {
-                $('.back-to-top').fadeOut('slow');
-            }
-        });
-        $('.back-to-top').click(function () {
-            $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-            return false;
-        });
-
-
-        // Sidebar Toggler
-        $('.sidebar-toggler').click(function () {
-            $('.sidebar, .content').toggleClass("open");
-            return false;
-        });
-
-
-        // Progress Bar
-        $('.pg-bar').waypoint(function () {
-            $('.progress .progress-bar').each(function () {
-                $(this).css("width", $(this).attr("aria-valuenow") + '%');
-            });
-        }, {offset: '80%'});
-
-
-        // Calender
-        $('#calender').datetimepicker({
-            inline: true,
-            format: 'L'
-        });
-
-
-        // Testimonials carousel
-        $(".testimonial-carousel").owlCarousel({
-            autoplay: true,
-            smartSpeed: 1000,
-            items: 1,
-            dots: true,
-            loop: true,
-            nav : false
-        });
-
-
-        // Worldwide Sales Chart
-        var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
-        var myChart1 = new Chart(ctx1, {
-            type: "bar",
-            data: {
-                labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-                datasets: [{
-                    label: "USA",
-                    data: [15, 30, 55, 65, 60, 80, 95],
-                    backgroundColor: "rgba(0, 156, 255, .7)"
-                },
-                    {
-                        label: "UK",
-                        data: [8, 35, 40, 60, 70, 55, 75],
-                        backgroundColor: "rgba(0, 156, 255, .5)"
-                    },
-                    {
-                        label: "AU",
-                        data: [12, 25, 45, 55, 65, 70, 60],
-                        backgroundColor: "rgba(0, 156, 255, .3)"
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
-
-
-        // Salse & Revenue Chart
-        var ctx2 = $("#salse-revenue").get(0).getContext("2d");
-        var myChart2 = new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-                datasets: [{
-                    label: "Salse",
-                    data: [15, 30, 55, 45, 70, 65, 85],
-                    backgroundColor: "rgba(0, 156, 255, .5)",
-                    fill: true
-                },
-                    {
-                        label: "Revenue",
-                        data: [99, 135, 170, 130, 190, 180, 270],
-                        backgroundColor: "rgba(0, 156, 255, .3)",
-                        fill: true
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
-    })(jQuery);
-
-
-</script>
 <script src="assets/js/data.js"></script>
 </body>
 

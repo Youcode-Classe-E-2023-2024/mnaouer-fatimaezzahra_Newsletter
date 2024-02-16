@@ -16,6 +16,8 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
-        "dropzone": "^6.0.0-beta.2"
+        "dropzone": "^6.0.0-beta.2",
+        "html2pdf.js": "^0.9.0",
+        "htmltopdf": "^0.0.8"
     }
 }
