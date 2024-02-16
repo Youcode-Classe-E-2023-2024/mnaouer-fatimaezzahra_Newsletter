@@ -52,6 +52,9 @@ Route::get('/dashboard' ,[DashboardController::class, 'showDashboard'])->name('s
 
 Route::get('/listeUser' ,[DashboardController::class, 'ListeUser'])->name('show.users');
 
+Route::get('/listeSubscriber' ,[DashboardController::class, 'ListeSub'])->name('show.subscriber');
+
+
 
 
 

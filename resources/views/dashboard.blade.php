@@ -383,7 +383,7 @@
             </div>
 
             <div class="navbar-nav w-100">
-                <a href="" class="nav-item nav-link"><i class="fa-solid fa-list"></i>Liste Suscriber</a>
+                <a href="{{route('show.subscriber')}}" class="nav-item nav-link"><i class="fa-solid fa-list"></i>Liste Suscriber</a>
             </div>
 
             <div class="navbar-nav w-100">
