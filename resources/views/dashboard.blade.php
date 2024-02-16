@@ -426,7 +426,7 @@
                     <div class="pt-20 flex justify-center">
                         <div class=" gap-10 flex flex-wrap w-full justify-center">
                             <div class="w-1/2 py-6 px-6 1/3 rounded-xl border border-gray-800 bg-white">
-                                <h5 class="text-xl text-gray-700">Abonnement</h5>
+{{--                                <h5 class="text-xl text-gray-700">Abonnement</h5>--}}
                                 <canvas id="subscriberChart" class="w-full" height="150"></canvas>
                             </div>
 

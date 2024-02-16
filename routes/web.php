@@ -9,6 +9,8 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\subscriberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +59,43 @@ Route::get('/listeSubscriber' ,[DashboardController::class, 'ListeSub'])->name('
 Route::get('/dashboard', [subscriberController::class,'showSubscriberStatistics'])->name('showSubscriberStatistics');
 
 
+//create role and permission and assign permission to role
+//Route::get('/fati', function () {
+//
+//    //create role
+//    $AdminRole=Role::create(['name'=>'admin']);
+//
+//    $userRole=Role::create(['name'=>'user']);
+//
+//    $guestRole=Role::create(['name'=>'guest']);
+//
+//    //create permission
+//    $AssignRole=Permission::create(['name'=>'Assign Role']);
+//    $Telechargepdf=Permission::create(['name'=>'Telecharge pdf']);
+//
+//    $Add_temp=Permission::create(['name'=>'add template']);
+//    $Edit_temp=Permission::create(['name'=>'edit template']);
+//    $Soft_Delete_temp=Permission::create(['name'=>'soft delete template']);
+//    $Send_temp_to_email=Permission::create(['name'=>'send template']);
+//
+////    Assign permission to a role
+//    $AdminRole->givePermissionTo($AssignRole);
+//    $AdminRole->givePermissionTo($Telechargepdf);
+//
+//    $userRole->givePermissionTo($Add_temp);
+//    $userRole->givePermissionTo($Edit_temp);
+//    $userRole->givePermissionTo($Soft_Delete_temp);
+//    $userRole->givePermissionTo($Send_temp_to_email);
+//
+//
+//
+//
+//    return 'salut';
+//});
 
+
+Route::get('/dashboard/{user}', [DashboardController::class,'selectRole'])->name('selectRole');
+Route::post('/dashboard', [DashboardController::class,'assign_Role'])->name('assign_role');
 
 
 
